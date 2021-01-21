@@ -1,0 +1,26 @@
+<div id="HeaderNavBar">
+    <div class="container">
+        <div class="  top-header">
+            <nav class="my-2 my-md-0 ml-auto top-links align-self-stretch d-flex align-items-center">
+                <a class="p-2 text-white align-self-stretch d-flex align-items-center nav-item" routerLink="/pages/">Home</a>
+                <a class="p-2 text-white align-self-stretch d-flex align-items-center nav-item" routerLink="/pages/list">DataSheet</a>
+            </nav>
+            <span class="ml-3">
+                <a mat-menu-item routerLink="/pages/">Home</a>
+                <a mat-menu-item routerLink="/pages/list">DataSheet</a>
+                <a [matMenuTriggerFor]="notiMenu" class="notBtn position-relative">
+                    <span class="badge badge-warning">16</span></a>
+            <mat-menu #notiMenu="matMenu">
+                <a mat-menu-item>No Notification</a>
+            </mat-menu>
+            </span>
+
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light " id="navBottom">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        </nav>
+    </div>
+</div>
+<!-- #HeaderNavBar -->

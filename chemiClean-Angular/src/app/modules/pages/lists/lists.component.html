@@ -1,0 +1,90 @@
+<!-- Start Header BreadCrumb Title -->
+<div class="container position-relative">
+    <div class="row">
+        <!-- <div class="headerBreadCrumbTitle">
+            <p id="breadCrumb"> <span id="breadCrumbMainPage">
+                <a routerLink="/pages/home" class="active">Home</a></span>
+                <i class="fas fa-arrow-left" id="arrow"></i> <a routerLink="/pages/lists" class="text-white">DataList</a></p>
+            <p id="pageTitle">DataList</p>
+        </div> -->
+    </div>
+</div>
+
+<div class="row  pt-1 pb-1 pr-2 pl-2">
+    <div class="col-md-9 bg-white">
+        <div class="col-md-12 mb-4 mt-4">
+            <form class="custom-admin-form1">
+                <div class="light_grey_bg p-3">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- <label>Product Name</label> -->
+                                <mat-form-field appearance="outline">
+                                    <input matInput (keyup)="applyFilter($event)" placeholder="Product Name" />
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <mat-form-field appearance="outline">
+                                    <input matInput (keyup)="applyFilter($event)" placeholder="Supplier Name" />
+                                </mat-form-field>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <div class="col-md-12 mb-4 mt-4">
+            <div class="customerInfo-container">
+                <table mat-table [dataSource]="dataSource" class="w-100">
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="productName">
+                        <th mat-header-cell *matHeaderCellDef> Product Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="supplierName">
+                        <th mat-header-cell *matHeaderCellDef> Supplier Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.supplierName}} </td>
+                    </ng-container>
+
+                    <!--lastModified-->
+                    <ng-container matColumnDef="lastModified">
+                        <th mat-header-cell *matHeaderCellDef> Last Modified </th>
+                        <td mat-cell *matCellDef="let element"> {{element.lastModified}} </td>
+                    </ng-container>
+
+
+                    <!--  Column -->
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef> Download </th>
+                        <td mat-cell *matCellDef="let element">
+
+                            <button *ngIf="element.fileContent" class="btn btn-link text-danger" (click)="Download(element)">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <!-- Row shown when there is no matching data that will be provided to the wrapper table. -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell text-center" colspan="5">No Data</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <mat-paginator [length]="pageLength" [pageSize]="10" [pageSizeOptions]="pageSizeOptions" (page)="update($event)"> </mat-paginator>
+        </div>
+
+    </div>
+</div>

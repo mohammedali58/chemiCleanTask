@@ -1,0 +1,130 @@
+﻿using ChemiClean.Core;
+using Microsoft.EntityFrameworkCore;
+using System;
+
+namespace ChemiClean.Infrastructure
+{
+    public static class ChemiCleanContextInitializer
+    {
+        public static void SeedInitializer(this ModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<Product>().HasData(
+            //Product(001,"Absol", "Yxhult/Svesten AB", "http://www.yxhult.se/_pdf/absol/Absol_sakerhetsdatablad_ver_12_se.pdf"),
+            //Product(002,"Addinol Semi Synth Mv 1047", "Addinol Lube Oil GmbH", "http://www.addinol.de/oilfinder/show_msds.php?id=38163"),
+            //Product(003,"Addinol Super Ligth Mv 0546", "Addinol Lube Oil GmbH", "http://www.addinol.de/oilfinder/show_msds.php?id=43475"),
+            //Product(004,"Anderol 6150", "Anderol BV", "http://www.anderol-europe.com/images/anderol/msds/SV__ANDEROL%206150_6150_SDS_20111020__ANDEROL_.PDF"),
+            //Product(005, "Anderol FGH 32", "Anderol BV", "http://www.anderol-europe.com/images/anderol/msds/SV__ANDEROL%20FGH%2032_FGH%2032_SDS_20111129__ANDEROL_.PDF"),
+            //Product(006, "Anti-static fluid", "Xerox", "http://www.xerox.com/download/ehs/msds/4-0071.da.pdf"),
+            //Product(007, "Bell®", "Hedegaard A/S", "http://datablade.dlaagro.com/Bell_-_150911.pdf"),
+            //Product(008, "Beskyttelsescreme", "Care Repair", "http://www.care-repair.dk/pdf_out/120.pdf"),
+            //Product(009, "Biopower", "Hedegaard A/S", "http://www.middeldatabasen.dk/pdf/msds/Biopower_MSDS_20080901.pdf"),
+            //Product(010, "Bison Plastlim", "Nilfisk-Frithiof", "http://www.nilfisk-frithiof.dk/files/pdf/produktdatablad_pvc_lim.pdf"),
+            //Product(011, "Blasocut® Bc 35 Kombi", "Duroc Machine Tools A/S", "http://www.duroc.com/media/782154/sikkerhedsdatablad_-_blasocut_bc_35_kombi.pdf"),
+            //Product(012,"Bore-Skære-Olie (Sprayprodukt),", "Care Repair", "http://www.care-repair.dk/pdf_out/570.pdf"),
+            //Product(013,"Briotril 400 EC", "Hedegaard A/S", "http://www.makhteshim-agan.nl/beheer/plaat/15207031DK%20Briotril%20400EC%20%28DK%29.pdf"),
+            //Product(014,"Buffer 4.0", "Reagecon Diagnostics Limited", "http://www.certs.reagecon.com/msds/da_/JR_2822_15da_.pdf"),
+            //Product(015,"Buffer Rlt", "Qiagen Danmark, Filial Af Qiagen AB, Sverige", "http://www.qiagen.com/data/Support/MSDS/DK/Buffer_RLT_DK7.pdf"),
+            //Product(016,"Buffer RLT plus", "Qiagen Danmark, Filial Af Qiagen AB, Sverige", "http://www.qiagen.com/data/Support/MSDS/DK/Buffer_RLT_plus_DK5.pdf"),
+            //Product(017,"Buffer RW1", "Qiagen Danmark, Filial Af Qiagen AB, Sverige", "http://www.qiagen.com/data/Support/MSDS/DK/Buffer_RW1_DK7.pdf"),
+            //Product(018,"C5-A Copper Anti-Seize Stick", "Henkel Norden AB", "http://mymsds.henkel.com/mymsds/0006.466863.7200.sv.MSDS_UT_SE.SE.pdf"),
+            //Product(019,"Cæsium format opløsning", "Cabot Specialty Fluids", "http://www.formatebrines.com/Portals/2/Datasheets/CESFORMSOL-EUR-DA.pdf"),
+            //Product(020,"Callisto", "Hedegaard A/S", "http://www.syngenta.com/country/dk/da/plantebeskyttelse/produkter/ukrudtsmidler/Documents/Callisto-SDS.pdf"),
+            //Product(021, "Citronsyramonohydrat Pulver Ph.eur.", "VWR International AB", "https://se.vwr.com/app/asset?type=hi_res&id=7670430&name=sds_VWRC85514&filename=7670430.pdf"),
+            //Product(022,"Cool Down", "Care Repair", "http://www.care-repair.dk/pdf_out/479.pdf", "87456709", "chemicontrol"),
+            //Product(023,"Creatine Monohydrate Biochemica", "AppliChem GmbH", "http://www.applichem.com/fileadmin/datenblaetter/A3132_da_DK.pdf"),
+            //Product(024,"Daglig Rengøring", "Stonetreatment ApS", "http://www.stonetreatment.dk/media/784/lba-daglig_rengoring.pdf"),
+            //Product(025,"Daglig Rengøring", "Stonetreatment ApS", "http://www.stonetreatment.dk/media/784/lba-daglig_rengoring.pdf"),
+            //Product(026,"Delaval Mastitis Test Cmt", "DELAVAL A/S", "http://www.delaval.dk/ImageVaultFiles/id_6409/cf_5/DeLavalMastitisTestCMT.pdf"),
+            //Product(027,"Diammoniumperoxodisulfat", "AppliChem GmbH", "http://www.applichem.com/fileadmin/datenblaetter/A0834_da_DK.pdf"),
+            //Product(028,"DynoRex", "Orica Denmark A/S", "http://www.oricaminingservices.com/download/file_id_11666/"),
+            //Product(029,"Eclipse Hard Floor Sealer", "PETER LUDVIGSEN A/S", "http://www.peter-ludvigsen.dk/pdf/pioneer/Hard_Floor_Sealer.pdf"),
+            //Product(030,"Eclipse Neutral Cleaner", "PETER LUDVIGSEN A/S", "http://www.peter-ludvigsen.dk/pdf/pioneer/Neutral_Cleaner.pdf"),
+            //Product(031,"Edta Calibration Sample", "Leco Corporation  Svenska AB", "http://arkiv.lecoswe.se/pdf/MSDS/DK/502-092(DK),.pdf", "lecocust", "pdffiles"),
+            //Product(032, "Eletronic-Spray 200ml Art.: 2832", "Auto-G Holstebro A/S", "http://www.chemical-check.de/clientversion/pdf1/566/2832_0008_03-11-2009_DA.pdf"),
+            //Product(033,"Ferodo Dot 4 Esp", "Aktieselskabet Carl Christensen", "http://www.msystem.dk/consumer/sikkerhedsdatablad.aspx?kid=6801"),
+            //Product(034,"Flamol B", "A B PLANTESERVICE", "http://www.flamol.dk/Flamol%20B.pdf"),
+            //Product(035,"Flamol K", "A B PLANTESERVICE", "http://www.flamol.dk/Flamol%20K.pdf"),
+            //Product(036,"Foodmax Bore- & Monteringspasta", "Care Repair", "http://www.care-repair.dk/pdf_out/H590.pdf"),
+            //Product(037,"Furnace Reagent", "Leco Corporation  Svenska AB", "http://arkiv.lecoswe.se/pdf/MSDS/DK/501-609-HAZ(DK),.pdf", "lecocust", "pdffiles"),
+            //Product(038,"Glyphomax* Herbicide (naf-595),", "Hedegaard A/S", "http://www.middeldatabasen.dk/pdf/MSDS/Glyphomax_MSDS_20101029.pdf"),
+            //Product(039,"Graco Pump Armor", "GRACO N.V.", "http://gww.graco.com/docs/MSDS/Danish/MSD029A.pdf"),
+            //Product(040,"Grease Spray", "Care Repair", "http://www.care-repair.dk/pdf_out/H588.pdf"),
+            //Product(041,"Grundrens", "Care Repair", "http://www.care-repair.dk/pdf_out/360.pdf", "87456709", "chemicontrol"),
+            //Product(042, "Hakupur 19-283", "Jens Linde A/S", "http://jenslinde.dk/userfiles/image/PDF/HAKUPUR_19-283.pdf"),
+            //Product(043,"Hydrochloric Acid 1.128 % (w/v), P. A.", "AppliChem GmbH", "http://www.applichem.com/fileadmin/datenblaetter/A2768_da_DK.pdf"),
+            //Product(044,"Hylomar Universal Blue", "Ermax A/S", "http://www.ermax.dk/Files/Filer/nyErmax/Servicevejledninger/hylomar_universal_blue.pdf"),
+            //Product(045,"Hylomar Universal Blue", "Ermax A/S", "http://www.ermax.dk/Files/Filer/nyErmax/Servicevejledninger/hylomar_universal_blue.pdf"),
+            //Product(046,"Kalkfjerner Super", "Care Repair", "http://www.care-repair.dk/pdf_out/208.pdf", "87456709", "chemicontrol"),
+            //Product(047,"Kerb 500 Sc Herbicide", "Hedegaard A/S", "http://planteapp.dlbr.dk/Middeldatabasen/pdf/msds/Kerb%20500SC_MSDS_20060607.pdf"),
+            //Product(048,"Kt Flyvrustfjerner", "KlarTek Danmark ApS", "http://www.klartek.dk/datablade/1319020820__-_KT-Flugrostentferner_PKW_(DK.pdf"),
+            //Product(049,"Kt Lawine Blau Vollwaschpulver", "KlarTek Danmark ApS", "http://www.klartek.dk/datablade/1320329081__-_KT_Lawine_Blau_Vollwaschpulver_(DK.pdf"),
+            //Product(050,"Kvartssand", "Dansk Kvarts Industri A/S", "http://www.kvarts.dk/files/manager/kvartssand.pdf?viewer=true"),
+            //Product(051,"LM 40 Multi-Funktions-Spray 400ml Art.:2816", "Auto-G Holstebro A/S", "http://www.chemical-check.de/clientversion/pdf1/566/2816_0009_24-02-2010_DA.pdf"),
+            //Product(052, "Loctite 561", "Henkel Norden AB", "http://mymsds.henkel.com/mymsds/0006.540917.7200.sv.MSDS_UT_SE.pdf"),
+            //Product(053,"Loctite 668", "Henkel Norden AB", "http://mymsds.henkel.com/mymsds/0006.705002.7200.sv.MSDS_UT_SE.SE.pdf"),
+            //Product(054,"Maintenancespray White 250ml Art.:2872", "Auto-G Holstebro A/S", "http://www.chemical-check.de/clientversion/pdf1/566/2872_0011_06-07-2009_DA.pdf"),
+            //Product(055,"Mangansulfat Monohydrat", "Hedegaard A/S", "http://planteapp.dlbr.dk/middeldatabasen/pdf/MSDS/Mangansulfat_32_MSDS_20091208.pdf"),
+            //Product(056,"Montage-Lim", "Care Repair", "http://www.care-repair.dk/pdf_out/432.pdf", "87456709", "chemicontrol"),
+            //Product(057,"Myremiddel Til Udvanding", "TANACO DANMARK A/S ", "http://www.tanaco.dk/cms/modules/ContentExpress/img_repository/Myremiddel%20til%20udvanding.pdf"),
+            //Product(058,"Nicanor 20 Sg", "Hedegaard A/S", "http://www.makhteshim-agan.nl/beheer/plaat/Nicanor%2020SG%20%28H%29%20%28DK%29.pdf"),
+            //Product(059,"Nitric Acid - Standard Volumetric Acid (0.5 M),", "AppliChem GmbH", "http://www.applichem.com/fileadmin/datenblaetter/A2690_da_DK.pdf"),
+            //Product(060,"Nitric Acid 20 % Technical Grade", "AppliChem GmbH", "http://www.applichem.com/fileadmin/datenblaetter/A0940_da_DK.pdf"),
+            //Product(061,"Nobelcord, F-cord 10, E-cord", "Orica Denmark A/S", "http://www.oricaminingservices.com/download/file_id_11755/"),
+            //Product(062, "Nobelit EP", "Orica Denmark A/S", "http://www.oricaminingservices.com/download/file_id_11685/"),
+            //Product(063,"Notrac Museblok", "Mortalin Produktion ApS", "http://www.mortalin.dk/files/pdf/Notrac_Museblok_28_g_vers_2_7-3-20011.pdf"),
+            //Product(064,"Notrac Museblok 28 g", "Mortalin Produktion ApS", "http://www.mortalin.dk/files/pdf/Notrac_Rotteblok_28_g_-_bromadiolon_-_MSDS_-vers_2_7-3-20011.pdf"),
+            //Product(065,"Notrac Rotteblok 28 g", "Mortalin Produktion ApS", "http://www.mortalin.dk/files/pdf/Notrac_Rotteblok_28_g_-_bromadiolon_-_MSDS_-vers_2_7-3-20011.pdf"),
+            //Product(066,"Opticid", "DELAVAL A/S", "http://www.delaval.dk/ImageVaultFiles/id_13546/cf_5/OptiCid_dk.PDF"),
+            //Product(067,"Pirimor G", "Hedegaard A/S", "http://www.syngenta.com/country/dk/SiteCollectionDocuments/Pirimor-SDS-DK.pdf"),
+            //Product(068,"Potassium Dichromate - Standard Volumetric Solution (0.033 M), For Cod-determination", "AppliChem GmbH", "http://www.applichem.com/fileadmin/datenblaetter/A3319_da_DK.pdf"),
+            //Product(069,"Potassium Ferrocyanide Trihydrate P. A.", "AppliChem GmbH", "http://www.applichem.com/fileadmin/datenblaetter/A1867_da_DK.pdf"),
+            //Product(070,"Pyrethrum Mod Fluer", "TANACO DANMARK A/S ", "http://www.tanaco.dk/cms/modules/ContentExpress/img_repository/Pyrethrum.pdf"),
+            //Product(071,"R10 Lugtfjerner", "Trade Nordic", "http://shop.mediqdanmark.dk/web_filer/72/72-90-R10%20sikkerhedsdatablad%20DK.pdf"),
+            //Product(072, "Rebound Cleaner/Enhancer", "PETER LUDVIGSEN A/S", "http://www.peter-ludvigsen.dk/pdf/pioneer/Rebound_Cleaner.pdf"),
+            //Product(073,"RTU Xtra, bag in can", "TANACO DANMARK A/S ", "http://www.tanaco.dk/cms/modules/ContentExpress/img_repository/RTU%20Xtra,%20bic.pdf"),
+            //Product(074,"Schnellreiniger 5l", "Auto-G Holstebro A/S", "http://www.autog.dk/Admin/Public/DWSDownload.aspx?File=Files%2fFiler%2fDatablade%2f2824.pdf"),
+            //Product(075,"Silicone Spray", "Care Repair", "http://www.care-repair.dk/pdf_out/H580.pdf"),
+            //Product(076,"Siliconspray 300ml Art.: 2899", "Auto-G Holstebro A/S", "http://www.chemical-check.de/clientversion/pdf1/566/2899_0009_29-06-2009_DA.pdf"),
+            //Product(077,"Silvernitrat 0,1 Mol/l (0,1 N), Vattenlösning Avs Titrinorm® Volumetrisk  Lösning", "VWR International AB", "https://se.vwr.com/app/asset?type=hi_res&id=7901949&name=sds_VWRC30472&filename=7901949.pdf"),
+            //Product(078,"Sol Lotion Faktor 30", "Care Repair", "http://www.care-repair.dk/pdf_out/132.pdf", "87456709", "chemicontrol"),
+            //Product(079,"Stald Chok D", "TANACO DANMARK A/S ", "http://www.tanaco.dk/cms/modules/ContentExpress/img_repository/Stald%20Chok.pdf"),
+            //Product(080,"Stonetreatment Daglig Rengøring", "Stonetreatment ApS", "http://www.stonetreatment.dk/media/784/lba-daglig_rengoring.pdf"),
+            //Product(081,"Stonetreatment Grundrengøring", "Stonetreatment ApS", "http://www.stonetreatment.dk/media/719/lba-grundrengoring.pdf"),
+            //Product(082, "Stonetreatment Grundrengøring", "Stonetreatment ApS", "http://www.stonetreatment.dk/media/719/lba-grundrengoring.pdf"),
+            //Product(083,"Super", "DELAVAL A/S", "http://www.delaval.dk/ImageVaultFiles/id_13553/cf_5/Super.PDF"),
+            //Product(084,"Svovlsyre 50 %", "AppliChem GmbH", "http://www.applichem.com/fileadmin/datenblaetter/A2102_da_DK.pdf"),
+            //Product(085,"SWEPCO 101 Moly Grease", "Lubco Danmark", "http://swepcousa.com/lubesite/lubemsds/101%20Danish.pdf", "MSDSlube", "$Rep1933"),
+            //Product(086,"Swepco 121 Tri-Plex Universal Grease", "Lubco Danmark", "http://swepcousa.com/lubesite/lubemsds/121%20Danish.pdf", "MSDSlube", "$Rep1933"),
+            //Product(087,"Swepco 815 Food Machinery Grease (Aerosol),", "Lubco Danmark", "http://swepcousa.com/lubesite/lubemsds/815%20Danish%20UN1950.pdf", "MSDSlube", "$Rep1933"),
+            //Product(088,"Tacky Lube Spray 400ml Art.:2842", "Auto-G Holstebro A/S", "http://www.chemical-check.de/clientversion/pdf1/566/2842_0010_07-09-2010_DA.pdf"),
+            //Product(089,"Toner (sort, cyan, Magenta, gul),", "Xerox", "http://www.xerox.com/download/ehs/msds/3-1176.da.pdf//download/ehs/msds/3-1176.da.pdf"),
+            //Product(090,"Tork Premium Flydende Sæbe - Mild", "SCA Hygiene Products A/S", "http://img.sca-tork.com/medias/sys_master/8833033535518.pdf?mime=application%2Fpdf&realname=420501%2C+420502%2C+400505+Mild.pdf"),
+            //Product(091,"Tp 100 Forte", "KlarTek Danmark ApS", "http://www.klartek.dk/datablade/1319017701__-_TP_100_Spezial_(DK.pdf"),
+            //Product(092, "TP 400 Chassis S", "KlarTek Danmark ApS", "http://www.klartek.dk/datablade/1319017701__-_TP_400_Chassis_S_(DK.pdf"),
+            //Product(093,"TRAFFIC AMPERE P Farve blå og grå", "Backner ApS", "http://www.backner.dk/contents/da/DK_Traffic_blaa_graa.pdf"),
+            //Product(094,"TRAFFIC AMPERE P Farve gul og hvid", "Backner ApS", "http://www.backner.dk/contents/da/DK_Traffic_gul_og_hvid.pdf"),
+            //Product(095,"Traffic Ampere P Farve Rød Og Grøn / Traffic Ampere P Extra Hvid", "Backner ApS", "http://www.backner.dk/contents/da/DK_Traffic_rod_gron_Traffic_Extra_hvid.pdf"),
+            //Product(096,"Tris-(hydroxymethyl), Aminomethan (tris), Analar Normapur® Analyse Reagens", "AppliChem GmbH", "https://dk.vwr.com/app/asset?type=hi_res&id=7667805&name=sds_BDHA10315&filename=sds_BDHA10315.pdf"),
+            //Product(097,"Tsl-væske Til Halspakning", "GRACO N.V.", "http://www.graco.com/content/dam/graco/tech_documents/msds/da/MSD122W.pdf"),
+            //Product(098,"Vask & Voks", "KlarTek Danmark ApS", "http://www.klartek.dk/datablade/1319017701__-_Wash_&_Wax_(DK.pdf"),
+            //Product(099,"Ventil Sauber 150ml Art.: 2809", "Auto-G Holstebro A/S", "http://www.chemical-check.de/clientversion/pdf1/566/2809_0012_27-04-2010_DA.pdf"),
+            //Product(010,"Zinc Acetate Dihydrate P. A.", "AppliChem GmbH", "http://www.applichem.com/fileadmin/datenblaetter/A4324_da_DK.pdf")
+            //);      
+
+        }
+
+        //#region Helper Methods
+        private static Product Product(int id,string ProductName = "", string SupplierName = "", string Url = "", string UserName = "", string Password = "", DateTime LastModified = new DateTime())
+            => new Product()
+            {
+                Id =id,
+                ProductName = ProductName,
+                SupplierName = SupplierName,
+                Url = Url,
+                UserName = UserName,
+                Password = Password,
+                LastModified = LastModified
+            };
+        //#endregion
+    }
+}
